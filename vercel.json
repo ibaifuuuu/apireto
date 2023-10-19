@@ -1,16 +1,9 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "app.js",
-        "use": "@vercel/node"
-      }
-    ],
+    "builds": [{ "src": "api/*", "use": "@vercel/node" }],
     "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "server.js"
-      }
+      { "src": "/api/leerempleados", "dest": "api/leerempleados" },
+      { "src": "/api/agregarempleado", "dest": "api/agregarempleado" }
     ]
   }
   
