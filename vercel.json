@@ -1,8 +1,6 @@
 {
-    "version": 2,
-    "builds": [{ "src": "api/*", "use": "@vercel/node" }],
-    "routes": [
-      { "src": "/api/leerempleados", "dest": "api/leerempleados" },
-      { "src": "/api/agregarempleado", "dest": "api/agregarempleado" }
+    "rewrites": [
+      { "source": "/api/leerempleados", "destination": "api" }
     ]
+    
 }
