@@ -44,8 +44,7 @@ app.post('/api/agregarempleado', async (req, res) => {
   })
 
 
-const puerto = process.env.PUERTO || 3000;
 
-app.listen(puerto, () => {
+app.listen(() => {
     console.log(`Servidor Express en ejecución en el puerto ${puerto}`);
 });
