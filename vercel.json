@@ -1,6 +1,6 @@
 {
     "rewrites": [
-      { "source": "/api/leerempleados", "destination": "api" }
+      { "source": "/api/(.*)", "destination": "/api" }
     ]
     
 }
