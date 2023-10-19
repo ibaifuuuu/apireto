@@ -23,7 +23,8 @@ app.post('/api/agregarempleado', async (req, res) => {
   })
 
 
-
-app.listen(() => {
-    console.log(`Servidor Express en ejecución en el puerto ${puerto}`);
+const puerto = process.env.PORT || 3000;
+app.listen(puerto, () => {
+  console.log(`Servidor Express en ejecución en el puerto ${puerto}`);
 });
+
