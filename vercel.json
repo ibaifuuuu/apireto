@@ -5,5 +5,4 @@
       { "src": "/api/leerempleados", "dest": "api/leerempleados" },
       { "src": "/api/agregarempleado", "dest": "api/agregarempleado" }
     ]
-  }
-  
+}
