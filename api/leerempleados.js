@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/api/leerempleados', async (req, res) => {
     try {
         const { data, error } = await supabase
-            .from('empleados')
+            .from('Empleados')
             .select('*');
 
         if (error) {

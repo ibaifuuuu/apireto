@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/api/agregarempleado', async (req, res) => {
     try {
       const { data, error } = await supabase
-        .from('empleados')
+        .from('Empleados')
         .upsert([
           {
             Nombre: req.body.nombre,
