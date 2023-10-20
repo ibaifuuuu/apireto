@@ -9,7 +9,7 @@ const app = require ('express')();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/leertareas', async (req, res) => {
+app.get('/api/leer/tareas', async (req, res) => {
     try {
         const { data, error } = await supabase
             .from('Tareas')
