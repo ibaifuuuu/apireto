@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/api/leer/apartados', async (req, res) => {
     try {
         const { data, error } = await supabase
-            .from('Tareas')
+            .from('ApartadosCarta')
             .select('*');
 
         if (error) {
