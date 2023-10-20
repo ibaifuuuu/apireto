@@ -9,10 +9,10 @@ const app = require ('express')();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/leercomandas', async (req, res) => {
+app.get('/api/leer/apartados', async (req, res) => {
     try {
         const { data, error } = await supabase
-            .from('Comandas')
+            .from('Tareas')
             .select('*');
 
         if (error) {
