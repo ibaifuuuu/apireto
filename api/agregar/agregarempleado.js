@@ -12,6 +12,7 @@ app.post('/api/agregarempleado', async (req, res) => {
         .upsert([
           {
             nombre: req.body.nombre,
+            
           },
         ]);
   
