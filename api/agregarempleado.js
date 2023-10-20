@@ -11,7 +11,7 @@ app.post('/api/agregarempleado', async (req, res) => {
         .from('Empleados')
         .upsert([
           {
-            Nombre: req.body.nombre,
+            nombre: req.body.nombre,
           },
         ]);
   
