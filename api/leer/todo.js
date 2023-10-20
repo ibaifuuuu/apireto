@@ -44,7 +44,7 @@ app.get('/api/leer/todo', async (req, res) => {
         if (errorTareas || errorProductos || errorEmpleado || errorApartados || errorComandas || errorMensajes) {
             res.status(500).json({ error: 'Error al obtener datos desde Supabase' });
         } else {
-            res.json({apartados,productos,productoscomandas,comandas,mensajes, empleados, tareas });
+            res.json({apartados,productos,productoscomandas,comandas,empleados,mensajes, tareas });
         }
     } catch (error) {
         console.error('Error en la ruta /api/leer/todo:', error);
