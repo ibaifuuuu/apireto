@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Documentación de API Bar Manolo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        h3 {
+            color: #777;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentación de API Bar Manolo</h1>
+
+    <h2>Explicación de la API Bar Manolo</h2>
+    <p>
+        Esta API Restful creada en Node.js utilizando Express se comunica con la base de datos y las aplicaciones. Para acceder a las funciones de la API, tus aplicaciones deben realizar solicitudes HTTP a este servidor, agregando el directorio /api/ y la ruta a la función deseada.
+    </p>
+
+    <img src="img/prueba.png" alt="">
+    <h2>Rutas de la API</h2>
+
+    <h3>/api/leer/apartados</h3>
+    <p>
+        Ruta para obtener datos de la tabla "Apartados" en la base de datos.
+    </p>
+    <pre><code>
+        GET /api/leer/apartados
+    </code></pre>
+
+    <h3>/api/leer/comandas</h3>
+    <p>
+        Ruta para obtener datos de la tabla "Comandas" en la base de datos.
+    </p>
+    <pre><code>
+        GET /api/leer/comandas
+    </code></pre>
+
+    <h3>/api/leer/empleados</h3>
+    <p>
+        Ruta para obtener datos de la tabla "Empleados" en la base de datos.
+    </p>
+    <pre><code>
+        GET /api/leer/empleados
+    </code></pre>
+
+    <h3>/api/leer/productos</h3>
+    <p>
+        Ruta para obtener datos de la tabla "Productos" en la base de datos.
+    </p>
+    <pre><code>
+        GET /api/leer/productos
+    </code></pre>
+
+    <h3>/api/leertareas</h3>
+    <p>
+        Ruta para obtener datos de la tabla "Tareas" en la base de datos.
+    </p>
+    <pre><code>
+        GET /api/leertareas
+    </code></pre>
+
+    <h3>/api/leer/todo</h3>
+    <p>
+        Ruta para obtener datos de múltiples tablas en la base de datos, incluyendo "Apartados", "Comandas", "Empleados", "Productos", "Tareas".
+    </p>
+    <pre><code>
+        GET /api/leer/todo
+    </code></pre>
+</body>
+</html>
