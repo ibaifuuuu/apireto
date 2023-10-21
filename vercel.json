@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/" }
+    { "source": "/api/agregar/(.*)", "destination": "/api/agregar/$1" },
+    { "source": "/api/leer/(.*)", "destination": "/api/leer/$1" }
   ]
     
     
