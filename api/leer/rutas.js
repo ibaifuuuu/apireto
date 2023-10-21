@@ -57,7 +57,8 @@ app.get('/api/leer/productoscomandas', async (req, res) => {
     } catch (error) {
         console.error('Error en la ruta /api/lista:', error);
         res.status(500).json({ error: 'Error en el servidor' });
-    }
+    }    });
+
 
     app.get('/api/leer/productos', async (req, res) => {
         try {
@@ -74,7 +75,6 @@ app.get('/api/leer/productoscomandas', async (req, res) => {
             console.error('Error en la ruta /api/lista:', error);
             res.status(500).json({ error: 'Error en el servidor' });
         }
-    });
 });
 
 app.get('/api/leer/mensajes', async (req, res) => {
