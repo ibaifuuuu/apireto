@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 
 const rutasLectura = require('./api/leer/rutas');
 const rutasEscritura = require('./api/agregar/rutas');
