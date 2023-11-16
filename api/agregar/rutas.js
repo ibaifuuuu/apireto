@@ -25,10 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
 
-    pusher.trigger("canalRecargas", "recargaChat", {
-        message: "mensaje nuevo"
-      });
-
     try {
         const { data, error } = await supabase
         .from('Comandas')
@@ -37,6 +33,26 @@ router.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
         ])
         .select()
       
+
+        if (error) {
+            res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
+        } else {
+            res.json(data);
+        }
+    } catch (error) {
+        console.error('Error en la ruta /api/agregar/apartado:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+});
+
+router.post('/api/agregar/comandasSin', urlencodedParser, async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('Comandas')
+            .insert([
+                { idPersonal: req.body.idPersonal, anotacion: req.body.anotacion, precio: req.body.precio }
+            ])
+            .select();
 
         if (error) {
             res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
@@ -119,16 +135,14 @@ router.post('/api/agregar/productos',urlencodedParser, async (req, res) => {
     }
 });
 
-
-router.post('/api/agregar/tareas',urlencodedParser, async (req, res) => {
+router.post('/api/agregar/productosComandas',urlencodedParser, async (req, res) => {
     try {
         const { data, error } = await supabase
-        .from('Tareas')
+        .from('Productos-Comandas')
         .insert([
-          { idPersonal: req.body.idPersonal, descripcion: req.body.descripcion,fecha_lim : req.body.fecha_lim }
+          { idProductos: req.body.idProducto, idComanda: req.body.idComanda}
         ])
         .select()
-      
 
         if (error) {
             res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
