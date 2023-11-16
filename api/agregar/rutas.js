@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import bodyParser from 'body-parser';
+import router from '../eliminar/rutas';
 var Pusher = require("pusher");
 
 
@@ -22,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
+router.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
 
     pusher.trigger("canalRecargas", "recargaChat", {
         message: "mensaje nuevo"
@@ -32,7 +33,7 @@ app.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
         const { data, error } = await supabase
         .from('Comandas')
         .insert([
-          { idPersonal: req.body.idPersonal, descripcion: req.body.descripcion,fecha_lim : req.body.fecha_lim }
+          { idComanda: req.body.idComanda,idPersonal: req.body.idPersonal, anotacion: req.body.anotacion,precio : req.body.precio }
         ])
         .select()
       
@@ -49,7 +50,7 @@ app.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
 });
 
 
-app.post('/api/agregar/mensajes',urlencodedParser, async (req, res) => {
+router.post('/api/agregar/mensajes',urlencodedParser, async (req, res) => {
     
     pusher.trigger("canalRecargas", "recargaChat", {
         message: "mensaje"
@@ -76,7 +77,7 @@ app.post('/api/agregar/mensajes',urlencodedParser, async (req, res) => {
     
 });
 
-app.post('/api/agregar/empleados',urlencodedParser, async (req, res) => {
+router.post('/api/agregar/empleados',urlencodedParser, async (req, res) => {
     try {
         const { data, error } = await supabase
         .from('Empleados')
@@ -97,7 +98,7 @@ app.post('/api/agregar/empleados',urlencodedParser, async (req, res) => {
     }
 });
 
-app.post('/api/agregar/productos',urlencodedParser, async (req, res) => {
+router.post('/api/agregar/productos',urlencodedParser, async (req, res) => {
     try {
         const { data, error } = await supabase
         .from('Productos')
@@ -119,7 +120,7 @@ app.post('/api/agregar/productos',urlencodedParser, async (req, res) => {
 });
 
 
-app.post('/api/agregar/tareas',urlencodedParser, async (req, res) => {
+router.post('/api/agregar/tareas',urlencodedParser, async (req, res) => {
     try {
         const { data, error } = await supabase
         .from('Tareas')
