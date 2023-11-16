@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const rutasLectura = require('./api/leer/rutas');
 const rutasEscritura = require('./api/agregar/rutas');
 const rutasActualizar = require('./api/actualizar/rutas')
-const rutasEliminar = require('./api/actualizar/rutas')
+const rutasEliminar = require('./api/eliminar/rutas')
 
 
 
