@@ -29,4 +29,24 @@ router.post('/api/eliminar/empleados', async (req, res) => {
     }
 });
 
+
+router.post('/api/eliminar/productos', async (req, res) => {
+    const idProductos = req.body.idProductos;
+    try {
+        const { data, error } = await supabase
+            .from('Productos')
+            .delete()
+            .eq('idProductos', idProductos);
+        if (error) {
+            res.status(500).json({ error: 'Error al eliminar el producto de la tabla Productos' + error });
+        } else {
+            res.json(data);
+        }
+    } catch (error) {
+        console.error('Error en la ruta /api/eliminar/empleados', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+});
+
+
 module.exports = router;
