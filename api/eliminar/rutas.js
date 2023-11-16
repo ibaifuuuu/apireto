@@ -13,18 +13,14 @@ router.use(express.urlencoded({ extended: true }));
 // Ruta para eliminar empleados con datos proporcionados en el cuerpo del JSON
 router.post('/api/eliminar/empleados', async (req, res) => {
     const { idPersonal, mensaje } = req.body;
-
     try {
         const { data, error } = await supabase
             .from('Empleados')
             .delete()
             .eq('idPersonal', idPersonal);
-
         if (error) {
             res.status(500).json({ error: 'Error al eliminar el empleado de la tabla Empleados' });
         } else {
-            // Puedes hacer algo con el mensaje si lo necesitas
-            console.log('Mensaje recibido:', mensaje);
             res.json(data);
         }
     } catch (error) {
@@ -32,7 +28,5 @@ router.post('/api/eliminar/empleados', async (req, res) => {
         res.status(500).json({ error: 'Error en el servidor' });
     }
 });
-
-// Otros endpoints de tu aplicación...
 
 module.exports = router;
