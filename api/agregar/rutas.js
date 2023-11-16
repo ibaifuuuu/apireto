@@ -59,7 +59,7 @@ app.post('/api/agregar/mensajes',urlencodedParser, async (req, res) => {
         const { data, error } = await supabase
         .from('Mensajes')
         .insert([
-          { idEmpleado: req.body.idEmpleado, texto: req.body.texto} //la fecha y la hora se suben automaticamente
+          { idEmpleado: req.body.idEmpleado, texto: req.body.texto} 
         ])
         .select()
       
@@ -81,7 +81,7 @@ app.post('/api/agregar/empleados',urlencodedParser, async (req, res) => {
         const { data, error } = await supabase
         .from('Empleados')
         .insert([
-          { idPersonal: req.body.idPersonal, nombre: req.body.nombre}
+          {idPersonal:req.body.idPersonal,nombre: req.body.nombre,tipo:req.body.tipo,dni:req.body.dni,permisoChat:req.body.permisoChat,email:req.body.email,salario:req.body.salario, telefono: req.body.telefono, NumSegSocial: req.body.NumSegSocial, fNacimiento: req.body.fNacimiento }
         ])
         .select()
       

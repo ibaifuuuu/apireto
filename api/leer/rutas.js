@@ -88,8 +88,6 @@ app.get('/api/leer/productoscomandas', async (req, res) => {
 
 app.get('/api/leer/mensajes', async (req, res) => {
 
-
-
     try {
         const { data, error } = await supabase
             .from('Mensajes')

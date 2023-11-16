@@ -17,14 +17,4 @@ app.put('/api/actualizar/empleados', async (req, res) => {
     .select()
 });
 
-
-
-
-
-
-
-
-
-
-
 module.exports = app
