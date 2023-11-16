@@ -23,24 +23,44 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-router.post('/api/agregar/comandas',urlencodedParser, async (req, res) => {
 
+
+router.post('/api/agregar/comandas', urlencodedParser, async (req, res) => {
     try {
-        const { data, error } = await supabase
-        .from('Comandas')
-        .insert([
-          { idComanda: req.body.idComanda,idPersonal: req.body.idPersonal, anotacion: req.body.anotacion,precio : req.body.precio }
-        ])
-        .select()
-      
+        
+        const idComanda = req.body.idComanda;
 
-        if (error) {
-            res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
+        if (idComanda === 0) {
+            // Si el idComanda es 0, ejecuta la lógica de comandasSin
+            const { data, error } = await supabase
+                .from('Comandas')
+                .insert([
+                    { idPersonal: req.body.idPersonal, anotacion: req.body.anotacion, precio: req.body.precio }
+                ])
+                .select();
+
+            if (error) {
+                res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
+            } else {
+                res.json(data);
+            }
         } else {
-            res.json(data);
+            // Realiza el código correspondiente a /api/agregar/comandas
+            const { data, error } = await supabase
+                .from('Comandas')
+                .insert([
+                    { idComanda: idComanda, idPersonal: req.body.idPersonal, anotacion: req.body.anotacion, precio: req.body.precio }
+                ])
+                .select();
+
+            if (error) {
+                res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
+            } else {
+                res.json(data);
+            }
         }
     } catch (error) {
-        console.error('Error en la ruta /api/agregar/apartado:', error);
+        console.error('Error en la ruta /api/agregar/comandas:', error);
         res.status(500).json({ error: 'Error en el servidor' });
     }
 });
@@ -64,6 +84,7 @@ router.post('/api/agregar/comandasSin', urlencodedParser, async (req, res) => {
         res.status(500).json({ error: 'Error en el servidor' });
     }
 });
+
 
 
 router.post('/api/agregar/mensajes',urlencodedParser, async (req, res) => {
