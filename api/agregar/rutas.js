@@ -114,6 +114,30 @@ router.post('/api/agregar/mensajes',urlencodedParser, async (req, res) => {
     
 });
 
+router.post('/api/agregar/acceso',urlencodedParser, async (req, res) => {
+
+
+    try {
+        const { data, error } = await supabase
+        .from('Acceso')
+        .insert([
+          { idEmpleado: req.body.idEmpleado, fechaconexion: req.body.fechaconexion} 
+        ])
+        .select()
+      
+
+        if (error) {
+            res.status(500).json({ error: 'Error al agregar un nuevo apartado en la tabla ApartadosCarta' });
+        } else {
+            res.json(data);
+        }
+    } catch (error) {
+        console.error('Error en la ruta /api/agregar/apartado:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+    
+});
+
 router.post('/api/agregar/empleados',urlencodedParser, async (req, res) => {
     try {
         const { data, error } = await supabase

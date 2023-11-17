@@ -138,6 +138,23 @@ app.get('/api/leer/tareas', async (req, res) => {
     }
 });
 
+app.get('/api/leer/acceso', async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('Acceso')
+            .select('*');
+
+        if (error) {
+            res.status(500).json({ error: 'Error al obtener datos desde Supabase' });
+        } else {
+            res.json(data);
+        }
+    } catch (error) {
+        console.error('Error en la ruta /api/lista:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+});
+
 app.get('/api/leer/todo', async (req, res) => {
     try {
         const { data: apartados, error: errorApartados } = await supabase
@@ -180,6 +197,8 @@ app.get('/api/leer/todo', async (req, res) => {
         res.status(500).json({ error: 'Error en el servidor' });
     }
 });
+
+
 
 
 module.exports = app;
