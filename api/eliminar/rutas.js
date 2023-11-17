@@ -12,8 +12,18 @@ router.use(express.urlencoded({ extended: true }));
 
 // Ruta para eliminar empleados con datos proporcionados en el cuerpo del JSON
 router.post('/api/eliminar/empleados', async (req, res) => {
-    const { idPersonal, mensaje } = req.body;
     try {
+        // Eliminar las relaciones foráneas en otras tablas
+        const { data: dataRelaciones, error: errorRelaciones } = await supabase
+            .from('Comandas')
+            .delete()
+            .eq('idPersonal', idPersonal);
+        if (errorRelaciones) {
+            res.status(500).json({ error: 'Error al eliminar las relaciones foráneas en OtraTabla' });
+            return;
+        }
+        
+        const idPersonal= req.body.idPersonal;
         const { data, error } = await supabase
             .from('Empleados')
             .delete()
@@ -36,9 +46,39 @@ router.post('/api/eliminar/productos', async (req, res) => {
         const { data, error } = await supabase
             .from('Productos')
             .delete()
-            .eq('idProductos', idProductos);
+            .eq('idProductos', idProductos)
+            ;
         if (error) {
             res.status(500).json({ error: 'Error al eliminar el producto de la tabla Productos' + error });
+        } else {
+            res.json(data);
+        }
+    } catch (error) {
+        console.error('Error en la ruta /api/eliminar/empleados', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+});
+
+// Ruta para eliminar empleados con datos proporcionados en el cuerpo del JSON
+router.post('/api/eliminar/comandas', async (req, res) => {
+    try {
+        // Eliminar las relaciones foráneas en otras tablas
+        const { data: dataRelaciones, error: errorRelaciones } = await supabase
+            .from('Comandas')
+            .delete()
+            .eq('idComanda', idComanda);
+        if (errorRelaciones) {
+            res.status(500).json({ error: 'Error al eliminar las relaciones foráneas en OtraTabla' });
+            return;
+        }
+        
+        const idPersonal= req.body.idPersonal;
+        const { data, error } = await supabase
+            .from('Empleados')
+            .delete()
+            .eq('idPersonal', idPersonal);
+        if (error) {
+            res.status(500).json({ error: 'Error al eliminar el empleado de la tabla Empleados' });
         } else {
             res.json(data);
         }
